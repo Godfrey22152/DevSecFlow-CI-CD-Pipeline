@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: trainbook-app
-        image: godfrey22152/trainbooking-app:v1
+        image: godfrey22152/trainbooking-app:latest
         ports:
         - containerPort: 8080
         env:
