@@ -1,5 +1,5 @@
 
-# Train Ticket Reservation System - CI/CD Pipeline
+# DevSecFlow-CI-CD-Pipeline: Train Ticket Reservation System - CI/CD Pipeline
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -254,7 +254,7 @@ The Jenkins pipeline includes stages for compiling, testing, static analysis, bu
    In Jenkins navigate to `Dashboard` > `Manage Jenkins` > `Plugins` > `available plugins` search and install: `Docker`, `Eclipse Temurin installer`, `SonarQube Scanner`, `Config File Provider`, `Maven Integration`, `Pipeline Maven Integration`, `Kubernetes`, `Kubernetes Credentials`, `Kubernetes CLI`, `Kubernetes Client API`, `Pipeline: Stage View`
 
    - **Clone the repository and navigate to the `jenkins-pipeline` folder.**
-For details on setting up the Jenkins pipeline, refer to the `README.md` file in the `jenkins-pipeline` folder. 
+- For details on setting up the Jenkins pipeline, refer to the `README.md` file in the `jenkins-pipeline` folder. 
 
 ---
 
