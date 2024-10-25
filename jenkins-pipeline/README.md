@@ -216,8 +216,10 @@ In this step, we set up a global Maven settings.xml file to manage credentials s
 
 #### Extended E-mail Notification and E-mail Notification configuration
 
+##### Extended E-mail Notification configuration
 ![Extended E-mail Notification ](screenshots/extended-email.png)
 
+##### E-mail Notification configuration
 ![E-mail Notification ](screenshots/email.png)
 
 - After setting up `E-mail Notification` click the button below `**Test configuration by sending test e-mail**`
@@ -324,13 +326,16 @@ To execute the pipeline in Jenkins, follow these streamlined steps:
 
 ## Screenshots 
 
-
+### project-credentials
 ![project-credentials](screenshots/project-credentials.png)
 
+### SonarQube Server Personal Access token (PAT)
 ![SonarQube Server PAT](screenshots/sonar-token.png)
 
+### Pipeline Trigger
 ![Trigger the Pipeline](screenshots/docker_tag-parameterized.png)
 
+### Managed Files For Nexus Server
 ![Managed Nexus Server Files](screenshots/manged-nexus-server-files.png)
 
 
