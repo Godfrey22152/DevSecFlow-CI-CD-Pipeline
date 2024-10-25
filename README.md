@@ -160,27 +160,30 @@ To add a **User Data** script during the EC2 instance creation, follow these ste
     ```
    - Continue with the remaining steps to configure **Storage**, **Security Groups**, and **Tags**, then launch the instance.
 
- - **You can either Use AWS CLI**:
+
+ - **You can either Use AWS CLI to setup the EC2 Instances**:
    ```bash
     aws ec2 run-instances --image-id ami-12345678 --instance-type t2.medium --key-name your-key-pair \
     --security-group-ids sg-12345678 --subnet-id subnet-12345678 --user-data file://userdata.sh
    ```
 
+
  - **For a fully automated setup  of the EC2 Instances using Terraform, refer to the [Terraform EC2 Setup](https://github.com/Godfrey22152/automation-of-aws-infra-using-terraform-via-Gitlab) for automated setup scripts.**
 
  
-2. Accessing Running `Jenkins`, `SonarQube`, and `Nexus` Passwords over the browser using the server `public-ips`.
-   - **Accessing Jenkins Initial Admin Password `http://<public-ip>:8080`**:
+2. **Accessing Running `Jenkins`, `SonarQube`, and `Nexus` Passwords over the browser using the server `public-ips`.**
+   
+- **Accessing Jenkins Initial Admin Password `http://<public-ip>:8080`**:
 
    ```bash
    sudo cat /var/jenkins_home/secrets/initialAdminPassword
    ```
-   - **SonarQube Initial Admin Password Credentials `http://<public-ip>:9000`**:
-    - Username: `admin`
-    - Password: `admin`
+- **SonarQube Initial Admin Password Credentials `http://<public-ip>:9000`**:
+  - Username: `admin`
+  - Password: `admin`
    
-   - **Accessing Nexus Credentials `http://<public-ip>:8081`**:
-   The default admin password is stored in a file inside the container. Retrieve it by accessing container shell:
+- **Accessing Nexus Credentials `http://<public-ip>:8081`**:
+  The default admin password is stored in a file inside the container. Retrieve it by accessing container shell:
 
      ```bash
      docker exec nexus-container cat /nexus-data/admin.password
@@ -221,9 +224,12 @@ sudo ./aws/install
 aws configure
 # Follow the prompts and provide your `Access key ID` and `Secret Access Key` 
 ```
+
+
 **You can also refer to this repository and guide [here](https://github.com/Godfrey22152/Automated-EKS-Cluster-Deployment-Pipeline.git) for automated cluster creation.**
 
-- **After setting up, connect to the cluster with**:
+
+**After setting up, connect to the cluster with**:
 ```bash
 aws eks --region <region> update-kubeconfig --name <cluster-name>
 
@@ -231,11 +237,12 @@ aws eks --region <region> update-kubeconfig --name <cluster-name>
 aws eks --region eu-west-1 update-kubeconfig --name odo-eks-cluster
 ```
 
+
 ### Service Account & Secrets for Jenkins
 Create a `service account` in the `webapps` `Namespace` and necessary `secrets` for Jenkins to connect to the EKS cluster:
 Use the provided scripts in the `Jenkins_ServiceAccount_RBAC_Scripts` folder for automating service account and secret creation. You can refer to the detailed `README.md` inside the folder.
 - Run the automated script `create_jenkins_rbac.sh` available in the Jenkins_ServiceAccount_RBAC_Scripts folder in the repository.
-- After creating the secrets, copy the secret as displayed on the screen and add them to Jenkins by navigating to `Manage Jenkins` > `Credentials`. (Select `secret text` and paste the secret)
+- After creating the secrets, copy the secret as displayed on the screen, add them to Jenkins by navigating to `Manage Jenkins` > `Credentials`. (Select `secret text` and paste the secret)
 
 ### Private DockerHub Repository & Regcred Secret
 1. Create a DockerHub `private` repository to store your Docker images.
@@ -261,10 +268,30 @@ The Jenkins pipeline includes stages for compiling, testing, static analysis, bu
 ## Screenshots
 
 ### 1. Deployed TrainBooking application Images.
-![TrainBooking application Images](screenshots/trainbook.png) 
+![TrainBooking application Images](screenshots/trainbook1.png)
+![TrainBooking application Images](screenshots/trainbook2.png)
+![TrainBooking application Images](screenshots/trainbook3.png)
+![TrainBooking application Images](screenshots/trainbook4.png)
+![TrainBooking application Images](screenshots/trainbook5.png)
+![TrainBooking application Images](screenshots/trainbook6.png)
+![TrainBooking application Images](screenshots/trainbook7.png) 
+
+### 2. Jenkins Dashboard
+![Jenkins dashboard](screenshots/Jenkins-dashboard.png)
+![Parameterized Docker Tag](screenshots/docker_tag-parameterized.png)
+
+### 3. Jenkins Stage view
+![Jenkins Stage view](screenshots/pipeline-stage-view1.png)
+![Jenkins Stage view](screenshots/pipeline-stage-view2.png)
+
+### 4. Nexus Web View
+![Nexus Web View](screenshots/nexus.png)
+
+### 5. Sonarqube-server Web View
+![Sonarqube-server Web View](screenshots/Sonarqube-server.png)
 
 
-### 2. Jenkins Email Notification on Build Success/Failure.
+### 6. Jenkins Email Notification on Build Success/Failure.
 ![Successful Build](screenshots/success.jpg)
 
 ![Failed Build](screenshots/failure.jpg) 
