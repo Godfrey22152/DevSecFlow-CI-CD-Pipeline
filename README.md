@@ -287,8 +287,8 @@ The Jenkins pipeline includes stages for compiling, testing, static analysis, bu
 ### 4. Nexus Web View
 ![Nexus Web View](screenshots/nexus.png)
 
-### 5. Sonarqube-server Web View
-![Sonarqube-server Web View](screenshots/Sonarqube-server.png)
+### 5. SonarQube Server Web View
+![Sonarqube-server Web View](screenshots/sonarqube-server.png)
 
 
 ### 6. Jenkins Email Notification on Build Success/Failure.
