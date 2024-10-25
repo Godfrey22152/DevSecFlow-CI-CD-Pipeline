@@ -61,6 +61,24 @@ To run this project, you need the following:
 - Terraform installed for provisioning infrastructure.
 - SonarQube and Nexus running as Docker containers in EC2 Instances.
 - A private DockerHub repository for hosting container images.
+- Distribution Management Configuration in `pom.xml` file.
+  
+     - Ensure to add your Nexus server public Ip here `http://<nexus-server-pulic-ip>:8081` in this section of the `pom.xml` file
+       ```bash
+       <!-- Configuration to Deploy both snapshot and releases to Nexus -->
+       <distributionManagement>
+           <repository>
+               <id>maven-releases</id>
+               <name>maven-releases</name>
+               <url>http://<nexus-server-pulic-ip>:8081/repository/maven-releases/</url>
+           </repository>
+           <snapshotRepository>
+               <id>maven-snapshots</id>
+               <name>maven-snapshots</name>
+               <url>http://<nexus-server-pulic-ip>:8081/repository/maven-snapshots/</url>
+           </snapshotRepository>
+       </distributionManagement>
+       ```
 
 ## Technologies Used
 - Jenkins: For automating the CI/CD pipeline.
