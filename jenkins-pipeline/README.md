@@ -81,11 +81,11 @@ To install project-specific plugins:
 - Click on `**(global)**` > `**Add Credentials**` > select `**Kind**` 
 
     #### Types of Kind to choose for the Credentials
-    For Git Credentials (git-cred) ---> Username with password
-    For SonarQube PAT (sonar-token) ---> Secret text
-    For Docker Credentials (docker-cred) ---> Username with password
-    For K8s Service Account secret (k8-cred) ---> Secret text
-    For Email Credentials (email-cred) ---> Username with password 
+    - For Git Credentials (git-cred) ---> Username with password
+    - For SonarQube PAT (sonar-token) ---> Secret text
+    - For Docker Credentials (docker-cred) ---> Username with password
+    - For K8s Service Account secret (k8-cred) ---> Secret text
+    - For Email Credentials (email-cred) ---> Username with password 
 
 - For each `kind` you select provide the credential key details like the `**ID**`, `**Name**` and `**Description**` then proceed to create your Credentials. **(SEE SCREENSHOT IMAGES IN THE SCREENSHOT SECTION)** 
 
@@ -103,7 +103,7 @@ To securely store credentials in Jenkins, follow these steps for each type of cr
 5. Fill in the following fields:
    - **Username**: Enter your Git username.
    - **Password**: Enter your Git password or personal access token.
-   - **ID**: Enter `git-cred` (this ID is used in your pipeline).
+   - **ID**: Enter `git-cred` (The ID I used in my pipeline).
    - **Description**: Provide a description for easy identification (e.g., "Git Credentials for Pipeline").
 6. Click **OK** to save the credential.
 
@@ -115,7 +115,7 @@ To securely store credentials in Jenkins, follow these steps for each type of cr
 4. In the **Kind** dropdown, select **Secret text**.
 5. Fill in the following fields:
    - **Secret**: Paste the SonarQube Personal Access Token (PAT) here.
-   - **ID**: Enter `sonar-token` (this ID is used in your pipeline).
+   - **ID**: Enter `sonar-token` (The ID I used in my pipeline).
    - **Description**: Provide a description (e.g., "SonarQube Token for Code Analysis").
 6. Click **OK** to save the credential.
 
@@ -128,7 +128,7 @@ To securely store credentials in Jenkins, follow these steps for each type of cr
 5. Fill in the following fields:
    - **Username**: Enter your Docker Hub username.
    - **Password**: Enter your Docker Hub password or access token.
-   - **ID**: Enter `docker-cred` (this ID is used in your pipeline).
+   - **ID**: Enter `docker-cred` (The ID I used in my pipeline).
    - **Description**: Provide a description (e.g., "Docker Credentials for Pipeline").
 6. Click **OK** to save the credential.
 
@@ -140,7 +140,7 @@ To securely store credentials in Jenkins, follow these steps for each type of cr
 4. In the **Kind** dropdown, select **Secret text**.
 5. Fill in the following fields:
    - **Secret**: Paste the generated Kubernetes Service Account Secret here.
-   - **ID**: Enter `k8-cred` (this ID is used in your pipeline).
+   - **ID**: Enter `k8-cred` (The ID I used in my pipeline).
    - **Description**: Provide a description (e.g., "Kubernetes Service Account Token for Deployment").
 6. Click **OK** to save the credential.
 
@@ -153,7 +153,7 @@ To securely store credentials in Jenkins, follow these steps for each type of cr
 5. Fill in the following fields:
    - **Username**: Enter your email service Email address.
    - **Password**: Enter your email service `**app passwords**`.
-   - **ID**: Enter `email-cred` (this ID is used in your pipeline).
+   - **ID**: Enter `email-cred` (The ID I used in my pipeline).
    - **Description**: Provide a description (e.g., "Email Credentials for Jenkins Notifications").
 6. Click **OK** to save the credential.
 
