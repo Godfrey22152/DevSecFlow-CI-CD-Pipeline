@@ -265,9 +265,9 @@ The Jenkins pipeline includes stages for compiling, testing, static analysis, bu
 
 
 ### 2. Jenkins Email Notification on Build Success/Failure.
-![Successful Build](screenshots/success.png)
+![Successful Build](screenshots/success.jpg)
 
-![Failed Build](screenshots/failure.png) 
+![Failed Build](screenshots/failure.jpg) 
 
 
 
