@@ -94,14 +94,18 @@ To run this project, you need the following:
 ## Infrastructure Setup
 
 ### AWS EC2 Instance for Jenkins, SonarQube, and Nexus
-1. Set up three AWS EC2 instances for Jenkins, SonarQube, and Nexus.
-Launch 3 EC2 instances (Ubuntu) in AWS but ensure you add these userdatas for each instances during creation to install necessary dependencies.
 
-- **Adding User Data during EC2 Instance Creation**:
 
-To add a **User Data** script during the EC2 instance creation, follow these steps:
+#### Manual Procedure for AWS EC2 Instance setup for Jenkins, SonarQube, and Nexus
 
- - **Using AWS Management Console**:
+##### First Option: Using AWS Management Console
+
+Set up three AWS EC2 instances for Jenkins, SonarQube, and Nexus.
+Launch 3 EC2 instances (Ubuntu) in AWS but ensure you add these user-data for each instance during creation to install necessary dependencies.
+
+- **User Data for EC2 Instance dependency installation**:
+
+To add the **User Data** script during the EC2 instance creation, follow these steps:
 
    - **Log in to AWS Management Console** and navigate to **EC2**.
    - Click on **Launch Instance**.
@@ -170,7 +174,7 @@ To add a **User Data** script during the EC2 instance creation, follow these ste
     sudo systemctl enable docker
     sudo usermod -aG docker $USER
     sudo chmod 666 /var/run/docker.sock
-    echo "Waiting for 30 seconds before runing Sonarqube Docker container..."
+    echo "Waiting for 30 seconds before running Nexus Docker container..."
     sleep 30
 
     ## Runing Nexus in a docker container
@@ -179,28 +183,58 @@ To add a **User Data** script during the EC2 instance creation, follow these ste
    - Continue with the remaining steps to configure **Storage**, **Security Groups**, and **Tags**, then launch the instance.
 
 
- - **You can either Use AWS CLI to setup the EC2 Instances**:
+##### Second Option: Using AWS CLI to setup the EC2 Instances
+You can also use the `AWS CLI` to setup each of the EC2 Instance:
+
    ```bash
     aws ec2 run-instances --image-id ami-12345678 --instance-type t2.medium --key-name your-key-pair \
     --security-group-ids sg-12345678 --subnet-id subnet-12345678 --user-data file://userdata.sh
    ```
 
+- **NOTE**:
+ - `--image-id ami-12345678`: Specifies the Amazon Machine Image (AMI) ID to use for the instance. This ID represents the OS and software configuration of the instance (e.g., Ubuntu, Amazon Linux).
 
- - **For a fully automated setup  of the EC2 Instances using Terraform, refer to the [Terraform EC2 Setup](https://github.com/Godfrey22152/automation-of-aws-infra-using-terraform-via-Gitlab) for automated setup scripts.**
+ - `--instance-type t2.medium`: Specifies the type of instance to create, which determines its CPU, memory, and network performance. `t2.medium` provides moderate resources suitable for small to medium workloads. (You should increase the size for Jenkins instance.)
 
+ - `--key-name your-key-pair`: Specifies the name of the key pair to use for SSH access to the instance. You should have created this key pair in advance within AWS EC2.
+
+ - `--security-group-ids sg-12345678`: Assigns the instance to a security group that controls inbound and outbound traffic rules. Security groups are configured with rules to allow or restrict network access.
+
+ - `--subnet-id subnet-12345678`: Specifies the subnet where the instance will be launched. The subnet should be part of a Virtual Private Cloud (VPC) in which the instance can access resources and network configurations.
+
+ - `--user-data file://userdata.sh`: Supplies the user data script (`userdata.sh` in this case) that will run automatically when the instance starts. If the userdata.sh is in the same directory where you’re running the command, you can reference it as `file://userdata.sh`. Otherwise, provide the full path, e.g., `file:///home/user/scripts/userdata.sh`.
+
+
+#### Automated setup for the AWS EC2 Instance for Jenkins, SonarQube, and Nexus
+ For a fully automated setup of the EC2 Instances using Terraform: 
+ Refer to the [Terraform EC2 Setup](https://github.com/Godfrey22152/automation-of-aws-infra-using-terraform-via-Gitlab) for automated setup scripts.
+
+
+### Configure Installed Tools: `Jenkins`, `SonarQube`, and `Nexus`
+
+### Jenkins
  
-2. **Accessing Running `Jenkins`, `SonarQube`, and `Nexus` Passwords over the browser using the server `public-ips`.**
+Access running `Jenkins` and complete the setup over the browser using the EC2 Instance server `Public IP` at `http://<public-ip>:8080`.
    
-- **Accessing Jenkins Initial Admin Password `http://<public-ip>:8080`**:
+- **Access Jenkins Initial Admin Password**:
 
    ```bash
    sudo cat /var/jenkins_home/secrets/initialAdminPassword
    ```
-- **SonarQube Initial Admin Password Credentials `http://<public-ip>:9000`**:
+
+- **create an account to sign in and Install recommended Plugins**
+
+### SonarQube
+
+- **Access running SonarQube server at `http://<public-ip>:9000`**
+- **SonarQube Initial Admin Password Credentials**:
   - Username: `admin`
   - Password: `admin`
-   
-- **Accessing Nexus Credentials `http://<public-ip>:8081`**:
+
+
+### Nexus 
+- **Access running Nexus server at `http://<public-ip>:8081`**  
+- **Access Nexus Credentials**:
   The default admin password is stored in a file inside the container. Retrieve it by accessing container shell:
 
      ```bash
@@ -240,7 +274,7 @@ sudo ./aws/install
 - **After Installation, Run**: 
 ```bash
 aws configure
-# Follow the prompts and provide your `Access key ID` and `Secret Access Key` 
+# Follow the prompts and provide your "Access key ID" and "Secret Access Key" 
 ```
 
 
@@ -254,7 +288,6 @@ aws eks --region <region> update-kubeconfig --name <cluster-name>
 # In our case  
 aws eks --region eu-west-1 update-kubeconfig --name odo-eks-cluster
 ```
-
 
 ### Service Account & Secrets for Jenkins
 Create a `service account` in the `webapps` `Namespace` and necessary `secrets` for Jenkins to connect to the EKS cluster:
