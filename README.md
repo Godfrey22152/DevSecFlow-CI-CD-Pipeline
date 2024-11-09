@@ -90,10 +90,11 @@ To run this project, you need the following:
 - Maven: For Java application builds and dependency management.
 - Trivy: For scanning Docker images for vulnerabilities.
 
+
 ---
 ## Infrastructure Setup
 
-### AWS EC2 Instance for Jenkins, SonarQube, and Nexus
+### CI: AWS EC2 Instance for Jenkins, SonarQube, and Nexus
 
 
 #### Manual Procedure for AWS EC2 Instance setup for Jenkins, SonarQube, and Nexus
@@ -179,7 +180,8 @@ To add the **User Data** script during the EC2 instance creation, follow these s
 
     ## Runing Nexus in a docker container
     docker run -d -p 8081:8081 --name nexus-container sonatype/nexus3:latest
-    ```
+   ```
+
    - Continue with the remaining steps to configure **Storage**, **Security Groups**, and **Tags**, then launch the instance.
 
 
@@ -242,7 +244,7 @@ Access running `Jenkins` and complete the setup over the browser using the EC2 I
      ```
 
 
-### EKS Cluster Setup
+### CD: EKS Cluster Setup
 Refer to the repository and guide [here](https://github.com/Godfrey22152/Automated-EKS-Cluster-Deployment-Pipeline/tree/main/aws_eks_terraform_files) for setting up your EKS cluster using terraform. 
  
 - **Before you run the terraform scripts**: 
