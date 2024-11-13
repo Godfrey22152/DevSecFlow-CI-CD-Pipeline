@@ -307,14 +307,25 @@ Use the provided scripts in the `Jenkins_ServiceAccount_RBAC_Scripts` folder for
 
 ---
 
-## Pipeline Setup
-The Jenkins pipeline includes stages for compiling, testing, static analysis, building, image scanning, updating docker-tag, deploying to the EKS cluster, and Email notification of the builds. To set up the pipeline, follow these basic steps:
+## [CI Pipeline Setup](./jenkins-pipeline)
+This stage covers installation, required plugins, configuring global tools, credentials, and Jenkins job setup.
+The Jenkins pipeline includes stages for compiling, testing, code analysis, app builds, image builds and scanning, updating docker-tag, deploying to the setup EKS cluster, and Email notification of the builds.
 
-   - **Ensure the following plugins are installed and configured:**
-   In Jenkins navigate to `Dashboard` > `Manage Jenkins` > `Plugins` > `available plugins` search and install: `Docker`, `Eclipse Temurin installer`, `SonarQube Scanner`, `Config File Provider`, `Maven Integration`, `Pipeline Maven Integration`, `Kubernetes`, `Kubernetes Credentials`, `Kubernetes CLI`, `Kubernetes Client API`, `Pipeline: Stage View`
-
-   - **Clone the repository and navigate to the `jenkins-pipeline` folder.**
-- For details on setting up the Jenkins pipeline, refer to the `README.md` file in the **[jenkins-pipeline](./jenkins-pipeline)** folder. 
+### Plugins used in the Jenkins Pipeline:
+- **Docker Pipeline**
+- **Docker**
+- **Eclipse Temurin Installer** (for JDK 17)
+- **SonarQube Scanner**
+- **Config File Provider**
+- **Maven Integration**
+- **Pipeline Maven Integration**
+- **Kubernetes**
+- **Kubernetes Credentials**
+- **Kubernetes CLI**
+- **Kubernetes Client API**
+- **Pipeline: Stage View**
+   
+- **For a detailed guide on setting up the CI pipeline, refer to the `README.md` file in the [jenkins-pipeline](./jenkins-pipeline/README.md) folder**. 
 
 ---
 
